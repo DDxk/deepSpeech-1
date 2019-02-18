@@ -3,8 +3,6 @@ End-to-end speech recognition using distributed TensorFlow
 
 This repository contains TensorFlow code for an end-to-end speech recognition engine using Deep Neural Networks inspired by Baidu's DeepSpeech model, that can train on multiple GPUs. This work was developed at Ford Research and Innovation Center Palo Alto.
 
-This branch contains example code for incorporating a language model for spell checking or external decoders.
-
 This software is released under a BSD license. The license to this software does not apply to TensorFlow, which is available under the Apache 2.0 license, or the third party pre-requisites listed below, which are available under their own respective licenses.
 
 Pre-requisites
@@ -16,7 +14,7 @@ Pre-requisites
 * PySoundFile - to read FLAC files
 * scipy - helper functions for windowing
 * tqdm - for displaying a progress bar
-* kenlm - for language modeling
+* kenlm - for language modeling [optional]
 
 Getting started
 ------------------
@@ -108,7 +106,7 @@ Testing a model
 
 Using a Language Model:
 -------------------------
-Language Models can help improve the CER of models by acting as spell checker or even providing the most probable word for a sentence. In this branch, we show one possible implementation of using a language model during inference as a spell checker after decoding.
+Language Models can help improve the CER of models by acting as spell checker or even providing the most probable word for a sentence. We show one possible implementation of using a language model during inference as a spell checker after decoding.
 
 Download the kenlm source code and create a language model (.klm file) based on the the source corpus which you are transcribing for. (In this case the Librispeech transcritions)
 http://victor.chahuneau.fr/notes/2012/07/03/kenlm.html has an excellent tutorial for creating your first language model.
@@ -120,7 +118,6 @@ Use the --lm flag to point to the location of your language model. This will ena
 
 Using a Custom Decoder:
 ---------------------------
-In this branch we show how to create and use a custom decoder with deepSpeech.
 
 In lm_decoder.py we have created two classes, GreedyDecoder()and PrefixDecoder().
 The GreedyDecoder() implements basic greedy decoding of the output probabilities from deepSpeech.
